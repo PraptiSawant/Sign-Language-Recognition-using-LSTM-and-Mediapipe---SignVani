@@ -23,6 +23,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <link rel="stylesheet" href = "css/styles.css">
+
+  <script src="sound.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   
   <script type="module">
 
@@ -510,6 +513,16 @@ b.addEventListener('click',function() {
     <h6 class="t" style="color:grey;font-size: small;">Predicted Konkani Sentence:</h6>
     <h5 id="input" class="t"></h5>
     <button id="b" class="button-30">Konkani</button>
+<!-- <textarea id="inputs"></textarea> -->
+    <div id="voice" style="float: right; right: 0; position: relative; top: -10px;">
+      <button id="speak-btn" style="border-radius: 45%; border: none;outline: none;" onclick="speakText()" > 
+    <span class="file-label">
+      <i class="fas fa-volume-up"></i>
+    </span>
+  </button>
+  <audio id="audio"></audio>
+  </div>
+
   </div>
   <div id="model-controls" >
       <button id="model-change" class="button-30">Alphabet Model</button>
