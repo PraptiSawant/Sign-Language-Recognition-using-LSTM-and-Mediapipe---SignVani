@@ -1,5 +1,5 @@
 # Gesture-Recognition-for-Sign-Language-Translation
-This program will use gesture detection to help identify common ASL gestures as well as alphabets, translating them into sentences. These will be converted to speach using Google's TTS library. This application will be converted into a Android application for greater usability.
+This program will use gesture detection to help identify common ASL gestures as well as alphabets, translating them into sentences. These will be converted to speech This application will be converted into a Android application for greater usability.
 
 
 <br>
@@ -16,11 +16,6 @@ This program will use gesture detection to help identify common ASL gestures as 
 
 ## File Descriptions
 
-- `ML/`: Contains all files realted to data colelction, preprocessing and model training
-  - `Model Training.ipynb`: Notebook containing various models and feature engineering techniques to comapre performance.
-  - `data/`: Contains the compiled results as well as camera aspect ratio data
-  - `model_saves/`: Contains the tensorflow checkpoints for the models trained in `Model Training.ipynb`
-
 - `public/`: Files related to the webpage including the HTML/CSS files for page design aand JS scripts
   - `models/`: TensorflowJS models for the alphabet and gesture models 
  
@@ -29,8 +24,4 @@ This program will use gesture detection to help identify common ASL gestures as 
 
 <br> 
 
-## Video Demo
-
-
-https://user-images.githubusercontent.com/46743379/155891806-f778c457-dad2-483e-9b3c-fdd23c3ea747.mp4
 
