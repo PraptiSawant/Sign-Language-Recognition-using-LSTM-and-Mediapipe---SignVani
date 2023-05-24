@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "jquery": "^3.7.0",
+    "nodemon": "^2.0.16",
+    "python-shell": "^5.0.0"
+  }
+}

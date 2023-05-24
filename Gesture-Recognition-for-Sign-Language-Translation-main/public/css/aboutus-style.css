@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans",sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    height:100%;
+    min-height: 100vh;
+    display: flex;
+    background-size:cover;
+    align-items: center;
+    justify-content: center;
+    background-color: #666666;
+}
+
+.navbar{
+    border-radius: 0px;
+    margin-bottom: 0px;
+    /* position: absolute;
+    align-self: top; */
+   
+  }
+  
+.navbar-brand{
+    padding: 2px 15px;
+  }
+
+  #nav-bar{
+    position: top;
+    top: 0;
+    z-index: 20;
+    height:100%;
+   }
+   .navbar-brand img{
+    height: 40px;
+    padding-left: 30px;
+   }
+   .navbar-nav li{
+    padding: 0 10px;
+   }
+   .navbar-nav li a{
+    float: right;
+    text-align: left;
+   }
+   #nav-bar ul li a:hover{
+    color: #007bff!important;
+  }
+  .navbar{
+   background: #ffffff;
+  }
+  .navbar-toggler{
+   border: none!important;
+  }
+  .nav-link{
+   color: white!important;
+   font-weight: 600;
+   font-size: 16px;
+  }
+
+.about-section{
+    background: url(../assets/background2.png) ;
+    background-size: 90%;
+    background-color: #5f88a7;
+    background-size: cover;
+    overflow: hidden;
+    padding: 100px 0;
+}
+
+.inner-container{
+    width: 55%;
+    float: right;
+    background-color: #5f88a7;
+    padding: 150px;
+}
+
+.inner-container h1{
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.text{
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 30px;
+    text-align: justify;
+    margin-bottom: 40px;
+}
+
+.skills{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+@media screen and (max-width:1200px){
+    .inner-container{
+        padding: 80px;
+    }
+}
+
+@media screen and (max-width:1000px){
+    .about-section{
+        background-size: 100%;
+        padding: 100px 40px;
+    }
+    .inner-container{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:600px){
+    .about-section{
+        padding: 0;
+    }
+    .inner-container{
+        padding: 60px;
+    }
+}
