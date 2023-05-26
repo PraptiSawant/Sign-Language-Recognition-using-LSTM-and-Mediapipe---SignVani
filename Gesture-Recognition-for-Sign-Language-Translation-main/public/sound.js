@@ -1,14 +1,13 @@
 const speakBtn = document.getElementById("speak-btn");
-const textToSpeak = document.getElementById("input");
 const endpoint_url = "https://siya02-konakni-tts.hf.space/api/predict/";
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
 function speakText() { 
-  const textToSpeak = document.getElementById("input").value;
+  const konInput = document.getElementById('input').textContent;
   const payload = {
 "data": [
-  textToSpeak,
+  konInput,
   "Female",
   0.667,
   1,
