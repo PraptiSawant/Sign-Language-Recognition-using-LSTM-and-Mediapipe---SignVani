@@ -58,26 +58,44 @@
       let globalSentence = '';
       let globalKonSentence = '';
       const B = document.getElementById('b');
+    let translateSentence='';
+      let translateWord='';
       
-b.addEventListener('click',function() {
-  var i = document.getElementById("global-sentence").innerHTML;
-  var data = [
-  {"text": "my name siya"},
-];
-  console.log(i);
-  $.ajax({
-  type: "POST",
-  url: "http://127.0.0.1:5000/translate_to_Konkani",
-  data: JSON.stringify(data),
-  contentType: "application/json",
-  dataType: 'json',
-  success: function(result) {
-    console.log("Result:");
-    console.log(result);
-    konInput.textContent= JSON.stringify(result['kon']);
+      const translateBtn = document.getElementById("translate-btn");
+
+
+translateBtn.addEventListener('click',function(){
+  if(currentModel == "Gesture "){
+  let sent=translateWord.substring(1, translateWord.length)
+  translateSentence+=sent.toLowerCase()+",";
+  translateWord='';}
+  else{
+    translateSentence+=translateWord.toLowerCase()+",";
+  translateWord='';
+
   }
-});
-});
+  const url = "https://shrusti333-konkani-translation.hf.space/api/predict";
+
+  const data = {  
+  "data":[translateSentence]
+  };
+
+  const Options = {
+    method: 'POST',
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(data),
+  };
+
+  fetch(url,Options)
+    .then(response => response.json())
+.then(result => {
+ 
+    const k=result.data[0];
+   konInput.textContent = k+'.';
+  translateSentence='';
+  })
+    .catch(error => console.log('error', error));
+})
 
     // Step 3: Initialize static functions used for calculation
       function get_angles(a,b,c){
@@ -105,28 +123,33 @@ b.addEventListener('click',function() {
 
     modelButton.addEventListener('click', function(){
 
-      console.log("Button Value: ", modelButton.innerHTML);
-      if(modelButton.innerHTML == "Alphabet Model"){
+    
+      if(modelButton.innerHTML == "Gesture Model"){
 
-        modelButton.innerHTML = "Gesture Model";
+        modelButton.innerHTML = "Alphabet Model";
         let loadedModel = loadGestureModel().then((resolve, reject)=>{   //Handing the promise from before
             model = resolve;
         }).then(function() {
-            console.log("Model: ", model);
-            currentModel = "Gesture";
-            console.log("Current Model: ", currentModel); 
+            let sent=translateWord.substring(0, translateWord.length)
+          translateSentence+=sent.toLowerCase()+",";
+          translateWord='';
+          currentModel = "Gesture";
         }) 
       }
 
       else{
 
-        modelButton.innerHTML = "Alphabet Model";
+        modelButton.innerHTML = "Gesture Model";
         let loadedModel = loadAlphabetModel().then((resolve, reject)=>{   //Handing the promise from before
             model = resolve;
         }).then(function() {
-            console.log("Model: ", model);
+           let sent=translateWord.substring(1, translateWord.length)
+          translateSentence+=sent.toLowerCase()+",";
+          
+          translateWord='';
+              currentModel = "Alphabet";
             currentModel = "Alphabet";
-            console.log("Current Model: ", currentModel);
+            
         })
       }
     });
@@ -146,32 +169,39 @@ b.addEventListener('click',function() {
     clearButton.addEventListener('click', function(){
       mainSentence.textContent='';
       globalSentence="";
+      translateWord='';
       
     });
 
-    backspaceButton.addEventListener('click', function(){
+   backspaceButton.addEventListener('click', function(){
 
       const ms = getMainSentence();
 
-      console.log("Length: ", ms.textContent);
       if(ms.textContent.length != 0){
         globalSentence=ms.textContent;
         let sentence = globalSentence.trim();
-        console.log("Sentece: ", sentence);
+        
         const myArray = sentence.split(" ");
-        console.log("my Array: ", myArray);
-        console.log("Size: ", myArray.length);
-        myArray.pop();
-       
+          myArray.pop();
+        let sentencet =translateWord.trim();       
+        const myArrayt = sentencet.split(" ");        
+        myArrayt.pop();
          const newArray =myArray;
         // console.log("new Array: ", newArray);
          let newSentence = "";
         for(const word of newArray){
           newSentence += word + ' ';
         }
-        console.log("New Sentence: ", newSentence);
+       
         mainSentence.textContent = newSentence;
         globalSentence=newSentence;
+        const newArrayt =myArrayt;
+        // console.log("new Array: ", newArray);
+         let newSentencet = "";
+        for(const word of newArrayt){
+          newSentencet += word + ' ';
+        }        
+        translateWord=newSentencet;
       } 
       else{
         mainSentence.textContent = "Global Sentence"
@@ -183,7 +213,7 @@ b.addEventListener('click',function() {
 
 
     // Step 4: Start loading the model asynchronously   
-      console.log("Start Load");
+    
 
       async function loadAlphabetModel(){     // Promise of loading model from JSON file
         const model = await tf.loadLayersModel('./models/alphabets/model.json')
@@ -205,19 +235,19 @@ b.addEventListener('click',function() {
       let loadedModel = loadGestureModel().then((resolve, reject)=>{   //Handing the promise from before
         model = resolve;
       }).then(function() {
-          console.log("Model: ", model) 
+        
       });
 
-      console.log("Loaded Model: ", loadedModel);
+  
 
 
 
     // Step 5: Async prediction function which predicts the probabilities of classes and return label
       async function predictModel(input){
-        console.log("Input is: ", input.arraySync());
+        
         const predictionArr = await model.predict(input);
         const prediction =  indexOfMax(predictionArr.arraySync()[0]);
-        console.log("ArgMax: ", prediction);
+       
 
         return labels[prediction];
       }
@@ -237,7 +267,7 @@ b.addEventListener('click',function() {
           const landmark_list =[];
 
           if (results.leftHandLandmarks){
-            console.log("Left hand");
+           
             const angle_1 = get_angles((results.leftHandLandmarks[4]['x'], results.leftHandLandmarks[4]['y']),
                                             (results.leftHandLandmarks[0]['x'], results.leftHandLandmarks[0]['y']),
                                             (results.leftHandLandmarks[20]['x'], results.leftHandLandmarks[20]['y']));
@@ -257,7 +287,7 @@ b.addEventListener('click',function() {
             // console.log("Landmark List: ", landmark_list);
           } 
           else if(results.rightHandLandmarks){
-            console.log("Right hand");
+            
             const angle_1 = get_angles((results.rightHandLandmarks[4]['x'], results.rightHandLandmarks[4]['y']),
                                             (results.rightHandLandmarks[0]['x'], results.rightHandLandmarks[0]['y']),
                                             (results.rightHandLandmarks[20]['x'], results.rightHandLandmarks[20]['y']));
@@ -278,25 +308,26 @@ b.addEventListener('click',function() {
           let predictionMade = predictModel(tf.tensor([landmark_list])).then((resolve, reject)=>{
             label = resolve;
             labelElement.textContent = label;
-            console.log("Promise Output: ", resolve, reject);
+          
           }).then(function() {
-              console.log("Answer: ", label);
+             
 
               predictionArray.push(label);
               if(predictionArray.length > 20)
                 predictionArray = predictionArray.slice(-20);
-              console.log(predictionArray);
+             
 
               let distinctItems = [...new Set(predictionArray)];
               
               if(distinctItems.length == 1 && distinctItems.slice(-1)==label && predictionArray.length==20){
                 globalSentence += label;
+                 translateWord+=label;
                 // predictionArray.splice(0, predictionArray.length);
                 predictionArray = []
                 mainSentence.textContent = globalSentence;
                 
               }  
-              console.log("Global Sentence: ", globalSentence);
+     
 
           });
 
@@ -356,24 +387,25 @@ b.addEventListener('click',function() {
           let predictionMade = predictModel(tf.tensor([landmark_list])).then((resolve, reject)=>{
             label = resolve;
             labelElement.textContent = label;
-            console.log("Promise Output: ", resolve, reject);
+            
           }).then(function() {
-              console.log("Answer: ", label);
+             
 
               predictionArray.push(label);
               if(predictionArray.length > 20)
                 predictionArray = predictionArray.slice(-20);
-              console.log(predictionArray);
+            
 
               let distinctItems = [...new Set(predictionArray)];
               
               if(distinctItems.length == 1 && distinctItems.slice(-1)==label && predictionArray.length==20){
                 globalSentence += ' ' + label;
+                translateWord+= ' '+label;
                 // predictionArray.splice(0, predictionArray.length);
                 predictionArray = []
                 mainSentence.textContent = globalSentence;
               }  
-              console.log("Global Sentence: ", globalSentence);
+       
               
           });
 
@@ -509,10 +541,13 @@ b.addEventListener('click',function() {
     <button id="clear" class="button-30">Clear All</button>
     <button id="backspace" class="button-30">Backspace </button>
   </div>
+  <div >
+  <button id="translate-btn" style="float: center;left: 150px; position:relative ; top: 50px;" class="button-30">Konkani</button>
+  </div>
   <div class="pop">
     <h6 class="t" style="color:grey;font-size: small;">Predicted Konkani Sentence:</h6>
-    <h5 id="input" class="t"></h5>
-    <button id="b" class="button-30">Konkani</button>
+    <h5 id="input" class="t">वाक्य</h5>
+    
 <!-- <textarea id="inputs"></textarea> -->
     <div id="voice" style="float: right; right: 0; position: relative; top: -10px;">
       <button id="speak-btn" style="border-radius: 45%; border: none;outline: none;" onclick="speakText()" > 
