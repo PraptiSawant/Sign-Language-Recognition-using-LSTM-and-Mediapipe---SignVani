@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href = "css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('next').onclick = function(){
+    let lists = document.querySelectorAll('.item');
+    document.getElementById('slide').appendChild(lists[0]);
+}
+document.getElementById('prev').onclick = function(){
+    let lists = document.querySelectorAll('.item');
+    document.getElementById('slide').prepend(lists[lists.length - 1]);
+}
+});
+    </script>
+    <style>
+       body{
+    background-color: #eaeaea;
+    overflow: hidden;
+}
+.container{
+    position: absolute;
+    left:60%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    width:1000px;
+    height:600px;
+    padding:50px;
+    background-color: #f5f5f5;
+    box-shadow: 0 30px 50px #dbdbdb;
+}
+#slide{
+    width:max-content;
+    margin-top:50px;
+}
+.item{
+    width:200px;
+    height:300px;
+    background-position: 50% 50%;
+    display: inline-block;
+    transition: 0.5s;
+    background-size: cover;
+    position: absolute;
+    z-index: 1;
+    top:50%;
+    transform: translate(0,-50%);
+    border-radius: 20px;
+    box-shadow:  0 30px 50px #505050;
+}
+.item:nth-child(1),
+.item:nth-child(2){
+    left:0;
+    top:0;
+    transform: translate(0,0);
+    border-radius: 0;
+    width:100%;
+    height:100%;
+    box-shadow: none;
+}
+.item:nth-child(3) {
+    left: 50%;
+    /* bottom: 100%; */
+    margin-top: 50%;
+}
+.item:nth-child(4){
+    left:calc(50% + 220px);
+    margin-top: 50%;
+}
+.item:nth-child(5){
+    left:calc(50% + 440px);
+    margin-top: 50%;
+}
+.item:nth-child(n+6){
+    left:calc(50% + 660px);
+    opacity: 0;
+    margin-top: 50%;
+}
+.item .content{
+    position: absolute;
+    top:60%;
+    /* left:100px; */
+    right:120%;
+    width:300px;
+    text-align: left;
+    padding:0;
+    color:#010101;
+    transform: translate(0,-50%);
+    display: none;
+    font-family: system-ui;
+}
+.item:nth-child(2) .content{
+    display: block;
+    z-index: 11111;
+}
+.item .name{
+    font-size: 40px;
+    font-weight: bold;
+    opacity: 0;
+    animation:showcontent 1s ease-in-out 1 forwards
+}
+.item .des{
+    margin:20px 0;
+    opacity: 0;
+    animation:showcontent 1s ease-in-out 0.3s 1 forwards;
+    font-weight: 200;
+    letter-spacing: 0.8px;
+    padding: 8px 10px;
+    background: linear-gradient(90.21deg, rgba(64, 194, 238, 0.5) -5.91%, rgba(74, 47, 189, 0.5) 111.58%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    margin-bottom: 16px;
+    display: inline-block;
+    
+}
+.item button{
+    padding:10px 20px;
+    /* border:none; */
+    opacity: 0;
+    animation:showcontent 1s ease-in-out 0.6s 1 forwards
+}
+@keyframes showcontent{
+    from{
+        opacity: 0;
+        transform: translate(0,100px);
+        filter:blur(33px);
+    }to{
+        opacity: 1;
+        transform: translate(0,0);
+        filter:blur(0);
+    }
+}
+.buttons{
+    position: absolute;
+    bottom:30px;
+    z-index: 222222;
+    text-align: center;
+    width:100%;
+}
+.buttons button{
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    border:1px solid #555;
+    background: linear-gradient(90deg, rgba(87,197,182,1) 0%, rgba(21,152,149,1) 6%, rgb(194, 215, 240) 100%);
+    transition: 0.5s;
+}
+.buttons button:hover{
+    background-color: #bac383;
+}
+
+.item-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.name {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+    </style>
+</head>
+<body>
+  <section id="nav-bar">
+    <nav class="navbar navbar-expand-lg navbar-light ">
+        <a class="navbar-brand nav-link" href="./home.html" ><img src="./assets/lie (1).png"><h1>SignVani</h1></a>
+        <div class="navbar-collapse" id="navbarNav" style="">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./home.html"><i class="ri-home-5-line"></i></i>
+                <span class="nav__name">Home</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./sample.html"><i class="ri-camera-line"></i><span class="nav__name">Webcame</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./FileUpload/FileUpload.html"><i class="ri-folder-upload-line"></i><span class="nav__name">Video Upload</span></a>
+            </li>            
+            <li class="nav-item">
+                <a class="nav-link" href="./aboutus.html"><i class="ri-information-line"></i><span class="nav__name">About</span></a>
+            </li>
+          </ul>
+         </div>
+      </nav>
+</section>
+    <div class="container">
+        <div id="slide">
+            <div class="item" style="background-clip: url();">
+                <video autoplay loop muted playsinline class="item-background">
+                    <source src="assets/tacotron.mp4" type="video/mp4">
+                </video>
+                <div class="content">
+                    <div class="name">Tacotron 2 and WaveGlow model</div>
+                    <div class="des">The Tacotron 2 and WaveGlow model form a text-to-speech system that enables user to synthesise a natural sounding speech from raw transcripts without any additional prosody information. The Tacotron 2 model produces mel spectrograms from input text using encoder-decoder architecture. WaveGlow is a flow-based model that consumes the mel spectrograms to generate speech.</div>
+                    <a href="https://pytorch.org/hub/nvidia_deeplearningexamples_tacotron2/#:~:text=The%20Tacotron%202%20and%20WaveGlow,text%20using%20encoder%2Ddecoder%20architecture." target="_blank"><button>See more</button></a>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(assets/img3.jpg);">
+                <div class="content">
+                    <div class="name">SignVani</div>
+                    <div class="des">SignVani is an innovative project that aims to bridge the communication gap between sign language users and non-sign language speakers. Using advanced computer vision techniques, it detects and translates sign language gestures into English text, allowing seamless communication. Additionally, SignVani goes a step further by translating the English text into Konkani and utilizing text-to-speech technology to deliver spoken translations in the Konkani language, making it accessible to goan audience and promoting inclusivity.</div>                    
+                </div>
+            </div>
+            <div class="item" style="background-image: url(assets/model.gif);">
+                <div class="content">
+                    <div class="name">Models Used to build SignVani Project</div>                    
+                </div>
+            </div>
+            <div class="item" style="background-image: url(assets/lstm.gif);">
+                <div class="content">
+                    <div class="name">LSTM</div>
+                    <div class="des">LSTM networks are recurrent neural networks that may learn order dependence in sequence prediction challengesThe LSTM (Long Short-Term Memory) model is a powerful neural network architecture commonly used for sign language detection. By leveraging its ability to capture long-range dependencies and handle sequential data, the LSTM model demonstrates promising accuracy in recognizing and interpreting sign language gestures, facilitating effective communication for the deaf and hard of hearing.</div>
+                    <a href="https://medium.com/@mayank.bali/sign-language-detection-for-deaf-using-deep-learning-mediapipe-u-opencv-4c5151e2374c" target="_blank"><button>See more</button></a>
+                </div>
+            </div>
+            <div class="item" style="background-image: url(assets/encoderdecoder.gif);">
+                <div class="content">
+                    <div class="name">Seq2Seq-LSTM-Model</div>
+                    <div class="des">The Seq2Seq-LSTM model is a sophisticated deep learning architecture that excels in English to Konkani text translation. By employing a sequence-to-sequence framework with LSTM layers, it captures the contextual information and linguistic patterns to generate accurate and meaningful translations, bridging the language barrier between English and Konkani with impressive fluency and precision.</div>
+                    <a href="https://www.codingninjas.com/codestudio/library/encoder-decoder-models" target="_blank"><button>See more</button></a>
+                </div>
+            </div>
+           
+         </div>
+        <div class="buttons">
+            <button id="prev"><i class="fa-solid fa-angle-left"></i></button>
+            <button id="next"><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+    </div>
+
+    
+</body>
+</html>
+  
