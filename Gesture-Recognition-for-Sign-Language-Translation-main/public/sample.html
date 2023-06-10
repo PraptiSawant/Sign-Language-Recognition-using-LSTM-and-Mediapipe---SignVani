@@ -65,10 +65,12 @@
 
 
 translateBtn.addEventListener('click',function(){
-  if(currentModel == "Gesture "){
+  if(currentModel == "Gesture"){
   let sent=translateWord.substring(1, translateWord.length)
   translateSentence+=sent.toLowerCase()+",";
+  
   translateWord='';}
+
   else{
     translateSentence+=translateWord.toLowerCase()+",";
   translateWord='';
