@@ -10,7 +10,7 @@ app.use(express.static(__dirname + "/public"))
 
 app.use('/', function (req, res) {
     // var model = loadModel();
-    res.render(__dirname + '/public/sample.html', {sample: "Text"});
+    res.render(__dirname + '/public/home.html', {sample: "Text"});
 });
 
 app.listen(port, () => {
