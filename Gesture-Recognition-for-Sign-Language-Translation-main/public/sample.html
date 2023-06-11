@@ -203,7 +203,7 @@ body:JSON.stringify(data),
         for(const word of newArrayt){
           newSentencet += word + ' ';
         }        
-        translateWord=newSentencet;
+       translateWord=' '+ newSentencet.substring(0,  newSentencet.length-1);
       } 
       else{
         mainSentence.textContent = "Global Sentence"
