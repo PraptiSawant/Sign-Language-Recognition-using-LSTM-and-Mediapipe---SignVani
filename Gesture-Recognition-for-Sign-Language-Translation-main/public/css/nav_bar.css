@@ -2,7 +2,14 @@ body{
     overflow-x: hidden;
    
 }
+.navbar{
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
 
+.navbar-brand{
+  padding: 2px 15px;
+}
 
 
 
