@@ -21,7 +21,7 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+  <link rel="stylesheet" href = "css/nav_bar.css">
   <link rel="stylesheet" href = "css/styles.css">
 
   <script src="sound.js"></script>
@@ -68,7 +68,7 @@ translateBtn.addEventListener('click',function(){
   if(currentModel == "Gesture"){
   let sent=translateWord.substring(1, translateWord.length)
   translateSentence+=sent.toLowerCase()+",";
-  
+  console.log( translateSentence)
   translateWord='';}
 
   else{
@@ -203,6 +203,9 @@ body:JSON.stringify(data),
         for(const word of newArrayt){
           newSentencet += word + ' ';
         }        
+        translateWord=' '+ newSentencet.substring(0,  newSentencet.length-1);
+        console.log(translateWord)
+        console.log(translateWord.length)
        translateWord=' '+ newSentencet.substring(0,  newSentencet.length-1);
       } 
       else{
@@ -524,48 +527,72 @@ body:JSON.stringify(data),
 
 
 <div class="container">
-  <div id="canvas-video">
-    <div id="loader"></div>
-    <video class="input_video"></video>
-    <canvas class="output_canvas" width="640px" height="480px"></canvas>
-</div>
-<div class="right">
-  <div class="pop">
-    <h6 class="t" style="color:grey;font-size: small;">Predicted Word:</h6>
-    <h5 id="label" class="t">Label Here</h5>
-  </div>
-  <div class="pop">
-    <h6 class="t" style="color:grey;font-size: small;">Predicted Sentence:</h6>
-    <h5 id="global-sentence" class="t">Label Here</h5>
-  </div>
-  <div id="top-controls" >
-    <button id="space" class="button-30">Space</button>
-    <button id="clear" class="button-30">Clear All</button>
-    <button id="backspace" class="button-30">Backspace </button>
-  </div>
-  <div >
-  <button id="translate-btn" style="float: center;left: 150px; position:relative ; top: 50px;" class="button-30">Konkani</button>
-  </div>
-  <div class="pop">
-    <h6 class="t" style="color:grey;font-size: small;">Predicted Konkani Sentence:</h6>
-    <h5 id="input" class="t">वाक्य</h5>
+
+    <div class="row">
+      <div class="col">
+        <div id="canvas-video">
+          <div id="loader"></div>
+          <video class="input_video"></video>
+          <canvas class="output_canvas" width="640px" height="480px"></canvas>
+      </div>
+      </div>
+      <div class="col">
+        <div class="right">
+          <div class="pop">
+            <h6 class="t" style="color:grey;font-size: small;">Predicted Word:</h6>
+            <h5 id="label" class="t">Label Here</h5>
+          </div>
+          <div class="pop">
+            <h6 class="t" style="color:grey;font-size: small;">Predicted Sentence:</h6>
+            <h5 id="global-sentence" class="t">Label Here</h5>
+          </div>
+          <div id="top-controls" >
+            <button id="space" class="button-30">Space</button>
+            <button id="clear" class="button-30">Clear All</button>
+            <button id="backspace" class="button-30">Backspace </button>
+          </div>
+          <div id="top-controls-translate">
+            <h1></h1>
+            <h2></h2>
+          <button id="translate-btn"  class="button-30">Konkani</button>
+          </div>
+          <div class="pop">
+            <h6 class="t" style="color:grey;font-size: small;">Predicted Konkani Sentence:</h6>
+            <h5 id="input" class="t">वाक्य</h5>
+            
+        
+            <div id="voice" style="float: right; right: 0; position: relative; top: -10px;">
+              <button id="speak-btn" style="border-radius: 45%; border: none;outline: none;" onclick="speakText()" > 
+            <span class="file-label">
+              <i class="fas fa-volume-up"></i>
+            </span>
+          </button>
+          <audio id="audio"></audio>
+          </div>
+        
+          </div>
+          <div id="model-controls" >
+              <button id="model-change" class="button-30">Alphabet Model</button>
+              <button class="button-30" id="camera-switch">Camera Off</button>
+          </div>
+        </div>
+      </div>
+     
+    </div>    
     
+        
+      
+     
+</div> 
+ 
+      
+   
 
-    <div id="voice" style="float: right; right: 0; position: relative; top: -10px;">
-      <button id="speak-btn" style="border-radius: 45%; border: none;outline: none;" onclick="speakText()" > 
-    <span class="file-label">
-      <i class="fas fa-volume-up"></i>
-    </span>
-  </button>
-  <audio id="audio"></audio>
-  </div>
 
-  </div>
-  <div id="model-controls" >
-      <button id="model-change" class="button-30">Alphabet Model</button>
-      <button class="button-30" id="camera-switch">Camera Off</button>
-  </div>
-</div>
+
+
+  
+
 </div>   
 </body>
 </html>
