@@ -21,6 +21,17 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+    #videoElement {
+        /*Mirror code starts*/
+        display: inline-block;
+        transform: rotateY(180deg);
+        -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+        -moz-transform:rotateY(180deg); /* Firefox */
+        /*Mirror code ends*/
+    }
+    
+    </style>
   <link rel="stylesheet" href = "css/nav_bar.css">
   <link rel="stylesheet" href = "css/styles.css">
 
@@ -487,7 +498,7 @@ body:JSON.stringify(data),
         <div class="navbar-collapse" id="navbarNav" style="">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="./home.html"><i class="ri-home-5-line"></i></i>
+              <a class="nav-link" href="./index.html"><i class="ri-home-5-line"></i></i>
                 <span class="nav__name">Home</span></a>
             </li>
             <li class="nav-item">
@@ -533,7 +544,7 @@ body:JSON.stringify(data),
         <div id="canvas-video">
           <div id="loader"></div>
           <video class="input_video"></video>
-          <canvas class="output_canvas" width="640px" height="480px"></canvas>
+          <canvas class="output_canvas" width="640px" height="480px" id="videoElement"></canvas>
       </div>
       </div>
       <div class="col">
