@@ -28,26 +28,13 @@ redirect: 'follow'
     .then(response => response.json())
 .then(result => {
     console.log(result);
-    const audioData = result.data[0].substring(22);  
-    const audioBlob = b64toBlob(audioData, 'audio/wav');
-    const audioUrl = URL.createObjectURL(audioBlob);
-    const audioElement = new Audio(audioUrl);
+    const audioElement = new Audio(result.data[0]);
     audioElement.play();
+     
   })
 
     .catch(error => console.log('error', error));
 }
-
-function b64toBlob(base64, type) {
-  const binaryString = window.atob(base64);
-  const len = binaryString.length;
-  const bytes = new Uint8Array(len);
-
-  for (let i = 0; i < len; ++i) {
-    bytes[i] = binaryString.charCodeAt(i);
-  }
-
-  return new Blob([bytes], { type });
-}
+  
 
 speakBtn.addEventListener("click", speakText);
